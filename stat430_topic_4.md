@@ -21,3 +21,13 @@ RUN;
 |RANPOI(seed, m)| Posisson, Poisson(m)|
 |RANUNI(seed)|Uniform, U(0,1)|
 ####
+
+## **proc mean**
+```
+proc means data=data_file maxdec = 1
+var mean
+run;
+```
+note:
+
+maxdec: maximum number of decimals in results
