@@ -21,3 +21,21 @@ If the null hypothesis is true and alpha = 0.05
 ### Type II error: Fail to reject H0 while H0 is false
 - This is an incorrect decision only if Ha is true.
 - The probability of this incorrect decision $\beta$ is computed as 1-Power(test)
+
+## One sample t test
+```
+ods graphics on; # requests graphical output
+proc ttest h0=80 plots(showh0) sides=u alpha=0.1;
+var time;
+run;
+ods graphics off;
+```
+- h0 = 80: the value of null hypothesis
+- plots(showh0) = null value be displayed on all relevant graphs.
+- sides = u: grater than 
+
+if the alternative hypothesis is larger, use "sides=u". 
+
+if the alternative hypothesis is smaller, use "sides=l". 
+
+if the alternative hypothesis is not equal, use "sides=2". 
