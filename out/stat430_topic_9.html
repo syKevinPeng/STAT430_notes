@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Topic 9 Statistical Testing</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="topic-9-statistical-testing">Topic 9 Statistical Testing</h1>
+<h2 id="1-introduction">1. Introduction</h2>
+<p>Hypothesis testing is the process of using sample data to test a claim about the value of a population parameter</p>
+<h2 id="2-p-value-and-alpha">2. P-value and alpha</h2>
+<ul>
+<li>If p_value &lt;= <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span></span></span>, we reject H0</li>
+<li>If p_value &gt;= <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>l</mi><mi>p</mi><mi>h</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">p</span><span class="mord mathdefault">h</span><span class="mord mathdefault">a</span></span></span></span>, we fail to reject h0</li>
+</ul>
+<h3 id="notes">notes:</h3>
+<p>The P-value is a statement about the probability that the sample mean takes on specific values.</p>
+<p>It is not a statement about the probability that the population mean has a certain value.</p>
+<p>It is not a statement about the probability that the null hypothesis is true.</p>
+<h2 id="type-i-and-ii-error">Type I and II error</h2>
+<h3 id="type-i-error-reject-h0-while-h0-is-true">Type I error: Reject H0 while H0 is true</h3>
+<p>If the null hypothesis is true and alpha = 0.05</p>
+<ul>
+<li>There really is no relationship and the extremity of the test statistic is due to chance.</li>
+<li>About 5% of all samples from this population will lead us to wrongly reject chance and conclude significance.</li>
+</ul>
+<h3 id="type-ii-error-fail-to-reject-h0-while-h0-is-false">Type II error: Fail to reject H0 while H0 is false</h3>
+<ul>
+<li>This is an incorrect decision only if Ha is true.</li>
+<li>The probability of this incorrect decision <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi></mrow><annotation encoding="application/x-tex">\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span></span></span></span> is computed as 1-Power(test)</li>
+</ul>
+<h2 id="one-sample-t-test">One sample t test</h2>
+<pre><code><code><div>ods graphics on; # requests graphical output
+proc ttest h0=80 plots(showh0) sides=u alpha=0.1;
+var time;
+run;
+ods graphics off;
+</div></code></code></pre>
+<ul>
+<li>h0 = 80: the value of null hypothesis</li>
+<li>plots(showh0) = null value be displayed on all relevant graphs.</li>
+<li>sides = u: grater than</li>
+</ul>
+<p>if the alternative hypothesis is larger, use &quot;sides=u&quot;.</p>
+<p>if the alternative hypothesis is smaller, use &quot;sides=l&quot;.</p>
+<p>if the alternative hypothesis is not equal, use &quot;sides=2&quot;.</p>
+
+    </body>
+    </html>

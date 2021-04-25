@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Topic 5 data and data display</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="topic-5-data-and-data-display">Topic 5 data and data display</h1>
+<h2 id="pie-chart">Pie chart</h2>
+<pre><code><code><div>proc gchart data=dataline;
+title &quot;some_title&quot;
+format sales dollar8.;
+pie var / sumvar = var2;
+run;
+</div></code></code></pre>
+<p>note</p>
+<ul>
+<li>pie var: specifies what values to show</li>
+<li>sumvar: specifies a numeric variable for sum or mean calculations</li>
+</ul>
+<h2 id="bar-graph">Bar graph</h2>
+<pre><code><code><div>proc gchart data=some_data;
+vbar var / type = percent;
+title &quot;some title&quot;;
+run;
+</div></code></code></pre>
+<h2 id="histogram">Histogram</h2>
+<pre><code><code><div>proc univariate data=somedata noprint;
+histogram some_var / endpoints = 3.425 to 3.6 by .025;
+run;
+</div></code></code></pre>
+<h2 id="boxplots">Boxplots</h2>
+<pre><code><code><div>proc univariate data = some_data plot;
+var var_name
+run;
+</div></code></code></pre>
+
+    </body>
+    </html>

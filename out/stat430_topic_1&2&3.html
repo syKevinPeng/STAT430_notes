@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Topic 1 &amp; 2 Introduction to SAS</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="topic-1--2-introduction-to-sas">Topic 1 &amp; 2 Introduction to SAS</h1>
+<h2 id="basic-structure">basic structure</h2>
+<p>data dataset_name;
+input num_input string_input$;
+datalines;
+1
+2
+3
+;</p>
+<h2 id="variabel-names">Variabel Names</h2>
+<ul>
+<li>must start with letter or underscore</li>
+<li>no longer than 32 char</li>
+<li>no special characters such as commas</li>
+<li>sas is not case sensitive</li>
+</ul>
+<h2 id="proc-print"><strong>proc print</strong></h2>
+<pre><code><code><div>proc print data=data_name;
+title 'some title';
+var var1 var2;
+run;
+</div></code></code></pre>
+<h2 id="proc-sort"><strong>proc sort</strong></h2>
+<pre><code><code><div>proc sort data=data_name;
+by subject;
+run;
+</div></code></code></pre>
+<h2 id="if-statement"><strong>if statement</strong></h2>
+<pre><code><code><div>data some_data;
+input some_input;
+if final GE 0 and final LT 41 then grade = 'F';
+else if FINAL GE 41 AND FINAL LT 60 THEN GRADE=&quot;D&quot;;
+datalines;
+</div></code></code></pre>
+<p>note:</p>
+<ul>
+<li>GE: greater or equal</li>
+<li>LE: less or equal</li>
+<li>GT: greater than</li>
+<li>LT: less than</li>
+</ul>
+<h2 id="proc-freq"><strong>proc freq</strong></h2>
+<pre><code><code><div>proc freq data=some_data;
+order = freql # order by frequency from high to low
+table var1 var2 # here two tables are requested
+run;
+</div></code></code></pre>
+<pre><code><code><div>table var1 var2 / nocum; # no cumulative frequency
+</div></code></code></pre>
+<h1 id="topic-3-inputting-data">Topic 3: Inputting data</h1>
+<h2 id="infile-statement"><strong>infile statement</strong></h2>
+<pre><code><code><div>data some_data;
+infile 'path_to_file' delimiter = ',' dsd'
+input
+var 1
+var 2
+;
+run;
+</div></code></code></pre>
+<p>note:
+&quot;dsd&quot;:</p>
+<ul>
+<li>ignores delimiters in data values enclosed in quotation marks</li>
+<li>does not read quotation marks as part of the data value</li>
+<li>threats two consecutive delimiters as a missing value</li>
+</ul>
+<h2 id="coloumn-input">coloumn input</h2>
+<pre><code><code><div>Data toads_1;
+	Input Name	$ 	1-6
+		  Weight 	8-10
+		  Jump1		12-14
+		  Jump2		16-18
+		  Jump3		20-22
+	;
+	Datalines;
+Lucky  2.3 1.9 2.3 3.0
+Spot   4.6 2.5 3.1 0.5
+Tubs   7.1 2.2 3.1 3.8
+Hop    4.5 3.2 1.9 2.6
+Noisy  3.8 1.3 1.8 1.5
+Winner 5.7 2.2 1.3 2.8
+;
+</div></code></code></pre>
+<p>restrictions:</p>
+<ul>
+<li>Each of the variable values in a data line must be in the same position in every data line. (Column Delimited)</li>
+<li>Numeric values include any necessary decimal points.</li>
+<li>Data doesn’t include any dates or other values which need special treatment (such as numbers with commas)</li>
+</ul>
+<p>Advantages over List Input:</p>
+<ul>
+<li>Spaces are not required between values.</li>
+<li>Missing values can be left blank</li>
+<li>Character data can have embedded spaces</li>
+<li>Skip unwanted variables</li>
+</ul>
+<h2 id="formatted-input">formatted input</h2>
+<pre><code><code><div>input
+    var1 informat1
+    var2 informat2
+</div></code></code></pre>
+<pre><code><code><div>&lt;$&gt; informat-namew.&lt;d&gt;
+</div></code></code></pre>
+<ul>
+<li>&quot;$&quot;: using a &quot;$&quot; indicates a character informat</li>
+<li>&quot;w&quot;: total number of column positions to read</li>
+<li>&quot;.&quot;: required delimiter</li>
+<li>'d': number of decimal places if dealing with a quantitative variable</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>format</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$CHARw</td>
+<td>Reads w column positions of character data and preserves leading blanks.</td>
+</tr>
+<tr>
+<td>COMMAw</td>
+<td>Reads w column positions of numeric data and removes selected nonnumeric characters such as dollar signs and commas.</td>
+</tr>
+<tr>
+<td>MMDDYY8.</td>
+<td>Reads dates of the form 10/29/01</td>
+</tr>
+</tbody>
+</table>
+
+    </body>
+    </html>
